@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { Box, Container } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 import FlexBetween from '../../components/FlexBetween';
 import Navbar from '../../components/Navbar';
+import Footer from '../Footer';
 
 const Layout = () => {
   return (
@@ -9,6 +10,10 @@ const Layout = () => {
       <FlexBetween>
         <Navbar />
       </FlexBetween>
+      <Container maxWidth='xl'>
+        <Outlet />
+      </Container>
+      <Footer />
     </Box>
   );
 };

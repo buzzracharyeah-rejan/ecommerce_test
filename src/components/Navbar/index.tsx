@@ -16,9 +16,9 @@ import {
 const Navbar = () => {
   return (
     <AppBar
-      sx={{ position: 'static', background: 'none', boxShadow: 'none', padding: '1.25rem 2rem' }}
+      sx={{ position: 'static', background: 'none', boxShadow: 'none', padding: '1.25rem 3.5rem' }}
     >
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-around' }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box
           component='img'
           alt='profile'

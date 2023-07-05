@@ -1,12 +1,21 @@
-import { Box } from '@mui/material';
+import { Box, SxProps } from '@mui/material';
 import React from 'react';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
+  sx?: SxProps;
 };
-const FlexBetween = ({ children }: Props) => {
+const FlexBetween = ({ className, children, sx }: Props) => {
   return (
-    <Box display='flex' justifyContent='space-between' alignItems='center' gap='1.5rem'>
+    <Box
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
+      gap='1.5rem'
+      className={className}
+      sx={sx}
+    >
       {children}
     </Box>
   );

@@ -4,8 +4,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-decoration: none !important;
 }
 
 .nav-item:hover {
-  text-decoration: none !important;
 }
