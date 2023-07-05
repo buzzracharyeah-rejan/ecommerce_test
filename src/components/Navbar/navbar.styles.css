@@ -1,0 +1,11 @@
+.nav-item {
+  color: #000 !important;
+  font-size: 1rem !important;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.nav-item:hover {
+  text-decoration: none !important;
+}
