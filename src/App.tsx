@@ -10,6 +10,7 @@ import Dashboard from './scenes/Dashboard';
 import Mock from './scenes/Mock';
 import Shop from './scenes/Shop';
 import Contact from './scenes/Contact';
+import Error from './scenes/Error';
 
 const App = () => {
   const mode = useAppSelector((state) => state.global.mode) as PaletteMode;
@@ -27,6 +28,7 @@ const App = () => {
             <Route path='/shop' element={<Shop />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/mock' element={<Mock />} />
+            <Route path='*' element={<Error />} />
           </Route>
         </Routes>
       </ThemeProvider>
