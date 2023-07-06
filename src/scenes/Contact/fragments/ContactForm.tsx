@@ -84,7 +84,7 @@ const ContactForm = () => {
             <FormInputText name='subject' control={control} label='Subject' />
             <FormInputText name='message' control={control} label='Message' />
           </form>
-          <Box my='1rem'>
+          <Box mt='2.5rem' mb='0.5rem' textAlign={'center'}>
             <Button
               type='submit'
               sx={{

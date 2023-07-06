@@ -11,6 +11,7 @@ import Mock from './scenes/Mock';
 import Shop from './scenes/Shop';
 import Contact from './scenes/Contact';
 import Error from './scenes/Error';
+import Checkout from './scenes/Checkout';
 
 const App = () => {
   const mode = useAppSelector((state) => state.global.mode) as PaletteMode;
@@ -27,6 +28,7 @@ const App = () => {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/checkout' element={<Checkout />} />
             <Route path='/mock' element={<Mock />} />
             <Route path='*' element={<Error />} />
           </Route>

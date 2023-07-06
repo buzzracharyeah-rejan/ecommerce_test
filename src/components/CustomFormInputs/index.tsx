@@ -11,14 +11,13 @@ type FormInputProps = {
 export const FormInputText = ({ name, control, label }: FormInputProps) => {
   const classes = {
     textField: {
-      height: '75px',
       borderRadius: '10px',
       background: '#FFF',
       color: '#000',
       border: '1px solid #9F9F9F',
-      padding: '1rem',
       '& .MuiInputBase-input': {
         border: 'none',
+        height: '100%',
       },
       '&:hover': {
         border: '1px solid #9F9F9F',

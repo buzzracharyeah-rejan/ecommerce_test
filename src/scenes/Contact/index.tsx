@@ -15,7 +15,13 @@ const Contact = () => {
           gap='1rem'
           my='3.5rem'
         >
-          <Typography variant='h4' textAlign={'center'} fontWeight={600} lineHeight={'normal'}>
+          <Typography
+            variant='h4'
+            textAlign={'center'}
+            fontWeight={600}
+            lineHeight={'normal'}
+            fontSize={'1.8rem'}
+          >
             Get In Touch With Us
           </Typography>
           <Typography variant='body1' textAlign={'center'} width={'644px'} color={'#9F9F9F'}>
