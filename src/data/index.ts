@@ -131,3 +131,38 @@ export const itemData = [
     title: 'Blinds',
   },
 ];
+
+export const bannerData = [
+  {
+    icon: '/assets/trophy.svg',
+    meta: {
+      title: 'High Quality',
+      desc: 'crafted from top materials',
+    },
+    order: 0,
+  },
+  {
+    icon: '/assets/shipping.svg',
+    meta: {
+      title: 'Free Shipping',
+      desc: 'Order over 150 $',
+    },
+    order: 2,
+  },
+  {
+    icon: '/assets/customer-support.svg',
+    meta: {
+      title: '24 / 7 Support',
+      desc: 'Dedicated support',
+    },
+    order: 3,
+  },
+  {
+    icon: '/assets/guarantee.svg',
+    meta: {
+      title: 'Warranty Protection',
+      desc: 'Over 2 years',
+    },
+    order: 1,
+  },
+];

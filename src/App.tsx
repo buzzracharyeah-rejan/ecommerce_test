@@ -7,6 +7,8 @@ import { CssBaseline, PaletteMode, ThemeProvider } from '@mui/material';
 
 import Layout from './scenes/Layout';
 import Dashboard from './scenes/Dashboard';
+import Mock from './scenes/Mock';
+import Shop from './scenes/Shop';
 
 const App = () => {
   const mode = useAppSelector((state) => state.global.mode) as PaletteMode;
@@ -20,6 +22,8 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path='/' element={<Navigate to='/dashboard' replace />} />
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='/mock' element={<Mock />} />
           </Route>
         </Routes>
       </ThemeProvider>
