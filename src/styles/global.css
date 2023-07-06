@@ -9,8 +9,9 @@
 }
 
 :root {
-  --primary: '#B88E2F';
-  --font-color: '#333';
+  --primary: #b88e2f;
+  --font-color: #333;
+  --color-light-bg: #f4f5f7;
 }
 
 html,
