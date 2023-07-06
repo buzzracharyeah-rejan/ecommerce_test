@@ -21,6 +21,7 @@ const App = () => {
         <Routes>
           <Route element={<Layout />}>
             <Route path='/' element={<Navigate to='/dashboard' replace />} />
+            <Route path='/home' element={<Navigate to='/dashboard' replace />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/mock' element={<Mock />} />

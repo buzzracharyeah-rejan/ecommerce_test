@@ -33,13 +33,13 @@ const Navbar = () => {
             <Link component={RouterLink} to='/' className='nav-item'>
               Home
             </Link>
-            <Link component={RouterLink} to='/' className='nav-item'>
+            <Link component={RouterLink} to='/shop' className='nav-item'>
               Shop
             </Link>
-            <Link component={RouterLink} to='/' className='nav-item'>
+            <Link component={RouterLink} to='/about' className='nav-item'>
               About
             </Link>
-            <Link component={RouterLink} to='/' className='nav-item'>
+            <Link component={RouterLink} to='/contact' className='nav-item'>
               Contact
             </Link>
           </FlexBetween>

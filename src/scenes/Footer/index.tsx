@@ -28,13 +28,13 @@ const Footer = () => {
               <Link component={RouterLink} to='/' className='nav-item'>
                 Home
               </Link>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='/shop' className='nav-item'>
                 Shop
               </Link>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='/about' className='nav-item'>
                 About
               </Link>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='/contact' className='nav-item'>
                 Contact
               </Link>
             </Box>
@@ -45,13 +45,13 @@ const Footer = () => {
               Help
             </Typography>
             <Box component='nav' display='flex' flexDirection='column' gap='1.5rem'>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='#' className='nav-item'>
                 Payment Options
               </Link>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='#' className='nav-item'>
                 Returns
               </Link>
-              <Link component={RouterLink} to='/' className='nav-item'>
+              <Link component={RouterLink} to='#' className='nav-item'>
                 Policies
               </Link>
             </Box>
