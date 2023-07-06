@@ -1,70 +1,21 @@
-import {
-  Box,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  Container,
-  useTheme,
-  Hidden,
-  Fade,
-  Backdrop,
-} from '@mui/material';
+import { Box, Card, CardMedia, CardContent, Typography, Button, Fade } from '@mui/material';
 import { dataSource } from '../../../data';
 import { useState } from 'react';
+import useStyles from '../useStyles';
 
 const FeaturedProducts = () => {
-  const theme = useTheme();
+  const classes = useStyles();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleCardHover = (cardId: string) => {
     setHoveredCard(cardId);
+    setIsHovered(true);
   };
 
   const handleCardLeave = () => {
     setHoveredCard(null);
-  };
-
-  const classes = {
-    card: {
-      maxWidth: '285px',
-      maxHeight: '446px',
-      gap: '1rem',
-      m: '1rem 0.5rem',
-      borderRadius: 'none',
-    },
-    cardMedia: {
-      width: '285px',
-      height: '301px',
-      flexShrink: '0',
-    },
-    cardContent: {
-      width: '285px',
-      height: '145px',
-      flexShrink: '0',
-      backgroundColor: 'var(--color-light-bg, #F4F5F7)',
-    },
-    title: {
-      fontSize: '40px',
-      fontStyle: 'normal',
-      fontWeight: '700',
-      lineHeight: '120%',
-      m: '1.5rem',
-    },
-    button: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.secondary.main,
-      width: '202px',
-      height: '48px',
-      textAlign: 'center',
-      border: `1px solid ${theme.palette.secondary[200]}`,
-      '&:hover': {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.secondary.main[600],
-      },
-    },
+    setIsHovered(false);
   };
 
   return (
@@ -96,6 +47,7 @@ const FeaturedProducts = () => {
                 </Typography>
               </CardContent>
             </Card>
+
             <Fade in={hoveredCard === item.id}>
               <Button
                 variant='contained'
