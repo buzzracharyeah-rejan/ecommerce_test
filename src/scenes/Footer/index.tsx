@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       <Divider />
       <Box p='48px 100px 38px 100px'>
-        <FlexBetween className='footer' sx={{ alignItems: 'flex-start' }}>
+        <FlexBetween className='footer' sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <Box className='footer__meta' display='flex' flexDirection='column' gap='4.5rem'>
             <Typography variant='h4' className='footer__meta-title'>
               Funiro.

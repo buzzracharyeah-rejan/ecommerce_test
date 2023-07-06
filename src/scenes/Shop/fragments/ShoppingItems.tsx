@@ -58,7 +58,7 @@ const ShoppingItems = () => {
   };
 
   return (
-    <Box mb='1.5rem'>
+    <Box mb='3.5rem'>
       <Box
         height='100px'
         display='flex'
