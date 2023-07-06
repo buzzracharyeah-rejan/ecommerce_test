@@ -1,7 +1,7 @@
 import { AppBar, Box, IconButton, Link, Toolbar } from '@mui/material';
 import React from 'react';
 import FlexBetween from '../FlexBetween';
-import logo from '../../assets/logo.png';
+import logo from '/assets/logo.png';
 import { Link as RouterLink } from 'react-router-dom';
 
 /* ASSETS */

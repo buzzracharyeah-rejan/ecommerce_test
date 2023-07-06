@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: '#B88E2F';
+  --font-color: '#333';
+}
+
 html,
 body {
   width: 100%;

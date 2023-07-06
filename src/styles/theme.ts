@@ -28,15 +28,15 @@ const shades = {
     900: '#333333',
   },
   secondary: {
-    100: '#cecfd1',
-    200: '#9d9fa3',
-    300: '#6b6e76',
-    400: '#3a3e48',
-    500: '#090e1a',
-    600: '#070b15',
-    700: '#050810',
-    800: '#04060a',
-    900: '#020305',
+    100: '#FFF3E3',
+    200: '#e3d2ac',
+    300: '#d4bb82',
+    400: '#c6a559',
+    500: '#b88e2f',
+    600: '#937226',
+    700: '#6e551c',
+    800: '#4a3913',
+    900: '#251c09',
   },
 };
 
@@ -50,11 +50,11 @@ export const themeSettings = (mode: PaletteMode) => {
         ? {
             primary: {
               ...shades.primary,
-              main: shades.primary[400],
+              main: shades.primary[200],
             },
             secondary: {
               ...shades.secondary,
-              main: shades.secondary[400],
+              main: shades.secondary[500],
             },
           }
         : {

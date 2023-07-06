@@ -1,0 +1,18 @@
+.banner-main__title {
+}
+
+.banner-main__desc {
+}
+
+.banner-box {
+  width: 643px;
+  height: 443px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5rem 2.5rem;
+  position: absolute;
+  bottom: 150px;
+  right: 60px;
+}

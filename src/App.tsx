@@ -15,13 +15,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path='/' element={<Navigate to='/dashboard' replace />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-        </Route>
-      </Routes>
-      <ThemeProvider theme={theme}></ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path='/' element={<Navigate to='/dashboard' replace />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };

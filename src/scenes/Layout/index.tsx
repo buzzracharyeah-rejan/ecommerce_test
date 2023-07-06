@@ -10,9 +10,7 @@ const Layout = () => {
       <FlexBetween>
         <Navbar />
       </FlexBetween>
-      <Container maxWidth='xl'>
-        <Outlet />
-      </Container>
+      <Outlet />
       <Footer />
     </Box>
   );
