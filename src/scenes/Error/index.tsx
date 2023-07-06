@@ -1,9 +1,11 @@
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography, useTheme } from '@mui/material';
 import FlexBetween from '../../components/FlexBetween';
 import { useNavigate } from 'react-router-dom';
 
 const Error = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+
   return (
     <Container maxWidth='lg' sx={{ p: '5.5rem 0' }}>
       <FlexBetween sx={{ flexDirection: 'column', gap: '2.5rem' }}>
@@ -21,7 +23,19 @@ const Error = () => {
           >
             We’re sorry. The page you requested could not be found.
           </Typography>
-          <Button onClick={() => navigate('/home')}>Back to the home page</Button>
+          <Box textAlign={'center'} mt='1.5rem'>
+            <Button
+              onClick={() => navigate('/home')}
+              sx={{
+                background: 'rgba(121,173,186)',
+                '&:hover': {
+                  background: 'rgba(121,173,186,0.8)',
+                },
+              }}
+            >
+              Back to the home page
+            </Button>
+          </Box>
         </Box>
       </FlexBetween>
     </Container>
