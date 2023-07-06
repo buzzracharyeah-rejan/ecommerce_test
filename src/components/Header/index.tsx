@@ -1,7 +1,12 @@
 import { Box } from '@mui/material';
-import CustomBreadCrumb from '../../../components/BreadCrumb';
+import CustomBreadCrumb from '../BreadCrumb';
 
-const Header = () => {
+type HeaderProps = {
+  title?: string;
+  location?: string;
+  location1?: string;
+};
+const Header = ({ title, location, location1 }: HeaderProps) => {
   const classes = {
     header: {
       background: 'url(/assets/background.png)',
@@ -18,7 +23,7 @@ const Header = () => {
   return (
     <Box height='316px' sx={classes.header} position='relative'>
       <Box position='absolute' top='50%' left='50%' sx={{ transform: 'translate(-50%, -50%)' }}>
-        <CustomBreadCrumb title='Shop' location='Home' location1='Shop' />
+        <CustomBreadCrumb title={title} location={location} location1={location1} />
       </Box>
     </Box>
   );

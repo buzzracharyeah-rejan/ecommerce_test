@@ -9,6 +9,7 @@ import Layout from './scenes/Layout';
 import Dashboard from './scenes/Dashboard';
 import Mock from './scenes/Mock';
 import Shop from './scenes/Shop';
+import Contact from './scenes/Contact';
 
 const App = () => {
   const mode = useAppSelector((state) => state.global.mode) as PaletteMode;
@@ -24,6 +25,7 @@ const App = () => {
             <Route path='/home' element={<Navigate to='/dashboard' replace />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/shop' element={<Shop />} />
+            <Route path='/contact' element={<Contact />} />
             <Route path='/mock' element={<Mock />} />
           </Route>
         </Routes>
