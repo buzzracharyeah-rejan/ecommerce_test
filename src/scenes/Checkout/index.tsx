@@ -135,7 +135,6 @@ const Checkout = () => {
               Your personal data will be used to support your experience throughout this website, to
               manage access to your account, and for other purposes described in our privacy policy.
             </Typography>
-
             <Box textAlign={'center'}>
               <Button sx={classes.orderBtn}>Place order</Button>
             </Box>
