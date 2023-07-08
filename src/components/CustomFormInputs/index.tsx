@@ -1,6 +1,7 @@
 // src/form-component/FormInputText.tsx
 import { Control, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
+import { FormGroup, FormLabel, InputLabel, useTheme } from '@mui/material';
 
 type FormInputProps = {
   name: string;
@@ -9,22 +10,18 @@ type FormInputProps = {
 };
 
 export const FormInputText = ({ name, control, label }: FormInputProps) => {
+  const theme = useTheme();
+
   const classes = {
     textField: {
       borderRadius: '10px',
-      background: '#FFF',
-      color: '#000',
-      border: '1px solid #9F9F9F',
+      background: '#fff',
+      padding: '0.85rem 0',
+      '& :focus': {
+        background: '#f3f3f3',
+      },
       '& .MuiInputBase-input': {
-        border: 'none',
-        height: '100%',
-      },
-      '&:hover': {
-        border: '1px solid #9F9F9F',
-      },
-      '&:active': {
-        borderRadius: '10px',
-        border: '1px solid #9F9F9F',
+        padding: '1rem',
       },
     },
   };
@@ -33,17 +30,21 @@ export const FormInputText = ({ name, control, label }: FormInputProps) => {
       name={name}
       control={control}
       render={({ field: { onChange, value }, fieldState: { error }, formState }) => (
-        <TextField
-          helperText={error ? error.message : null}
-          size='small'
-          error={!!error}
-          onChange={onChange}
-          value={value}
-          fullWidth
-          label={label}
-          variant='outlined'
-          sx={classes.textField}
-        />
+        <FormGroup>
+          <InputLabel htmlFor={name} sx={{ textTransform: 'capitalize', letterSpacing: '1.2px' }}>
+            {name}
+          </InputLabel>
+          <TextField
+            helperText={error ? error.message : null}
+            size='small'
+            error={!!error}
+            onChange={onChange}
+            value={value}
+            fullWidth
+            variant='outlined'
+            sx={classes.textField}
+          />
+        </FormGroup>
       )}
     />
   );

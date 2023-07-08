@@ -17,7 +17,8 @@ const ContactForm = () => {
   return (
     <>
       <Grid container>
-        <Grid item md={6} lg={4}>
+        {/* LEFT SIDE */}
+        <Grid item md={6} lg={4} sx={{ p: '1.25rem' }}>
           <Box display='flex' flexWrap='wrap' justifyContent='space-around' gap='2.8rem'>
             <FlexBetween>
               <Box component='img' alt='location' src='/assets/location.svg' />
@@ -67,9 +68,10 @@ const ContactForm = () => {
           </Box>
         </Grid>
 
+        {/* RIGHT SIDE */}
         <Grid item xs={12} md={6} lg={8}>
-          {' '}
-          <form
+          <Box
+            component='form'
             onSubmit={handleSubmit(onSubmit)}
             style={{
               display: 'flex',
@@ -79,11 +81,20 @@ const ContactForm = () => {
               gap: '3.5rem',
             }}
           >
-            <FormInputText name='name' control={control} label='Your name' />
-            <FormInputText name='email' control={control} label='Email Address' />
-            <FormInputText name='subject' control={control} label='Subject' />
-            <FormInputText name='message' control={control} label='Message' />
-          </form>
+            <Box minWidth='529px'>
+              <FormInputText name='name' control={control} label='Your name' />
+            </Box>
+
+            <Box minWidth='529px'>
+              <FormInputText name='email' control={control} label='Email Address' />
+            </Box>
+            <Box minWidth='529px'>
+              <FormInputText name='subject' control={control} label='Subject' />
+            </Box>
+            <Box minWidth='529px'>
+              <FormInputText name='message' control={control} label='Message' />
+            </Box>
+          </Box>
           <Box mt='2.5rem' mb='0.5rem' textAlign={'center'}>
             <Button
               type='submit'
