@@ -26,7 +26,7 @@ import FlexBetween from '../../../components/FlexBetween';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-const ShoppingItems = () => {
+const ProductList = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -215,4 +215,4 @@ const ShoppingItems = () => {
   );
 };
 
-export default ShoppingItems;
+export default ProductList;
