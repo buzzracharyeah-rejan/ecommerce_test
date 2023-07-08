@@ -13,6 +13,7 @@ import Contact from './scenes/Contact';
 import Error from './scenes/Error';
 import Checkout from './scenes/Checkout';
 import Cart from './scenes/Cart';
+import ProductDetail from './scenes/Shop/fragments/ProductDetail';
 
 const App = () => {
   const mode = useAppSelector((state) => state.global.mode) as PaletteMode;
@@ -28,6 +29,7 @@ const App = () => {
             <Route path='/home' element={<Navigate to='/dashboard' replace />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/shop' element={<Shop />} />
+            <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/cart' element={<Cart />} />
