@@ -24,7 +24,7 @@ const Checkout = () => {
       <Header title='Contacts' location='Home' location1='Checkout' />
       <Grid container>
         {/* LEFT */}
-        <Grid item xs={12} md={6} lg={4} display={'flex'} flexDirection={'column'}>
+        <Grid item xs={12} md={6} lg={5} display={'flex'} flexDirection={'column'}>
           <Box sx={{ ...classes.justifyContentCol, m: '6.5rem 0 2.5rem 0' }}>
             <Typography
               variant='h4'
@@ -38,57 +38,50 @@ const Checkout = () => {
             >
               Billing details
             </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: '1rem' }}>
               <Box sx={{ ...classes.justifyContent }}>
-                <Grid
-                  item
-                  xs={12}
-                  md={6}
-                  lg={5}
-                  sx={{ ...classes.justifyContentCol, gap: '0.85rem' }}
-                >
-                  <Grid container gap={4}>
-                    <Grid item xs={12} md={5}>
+                <Grid container width='453px' gap='0.91rem'>
+                  <Grid item xs={12} md={5.8}>
+                    <Box>
                       <FormInputText name='fname' control={control} label='First Name' />
-                    </Grid>
-                    <Grid item xs={12} md={5}>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={5.8}>
+                    <Box>
                       <FormInputText name='lname' control={control} label='Last Name' />
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText
-                      name='company'
-                      control={control}
-                      label='Company Name (Optional)'
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='country' control={control} label='Country / Region' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='street' control={control} label='Street address' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='town' control={control} label='Town / City' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='province' control={control} label='Province' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='zip' control={control} label='ZIP code' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='phone' control={control} label='Phone' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='email' control={control} label='Email address' />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormInputText name='additionalInfo' control={control} label='' />
+                    </Box>
                   </Grid>
                 </Grid>
+
+                <Box width='453px'>
+                  <FormInputText name='company' control={control} label='Company Name (Optional)' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='country' control={control} label='Country / Region' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='street' control={control} label='Street address' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='town' control={control} label='Town / City' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='province' control={control} label='Province' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='zip' control={control} label='ZIP code' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='phone' control={control} label='Phone' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='email' control={control} label='Email address' />
+                </Box>
+                <Box width='453px'>
+                  <FormInputText name='additionalInfo' control={control} label='' />
+                </Box>
               </Box>
-            </form>
+            </Box>
             <Box mt='2.5rem' mb='0.5rem' textAlign={'center'}>
               <Button type='submit' sx={classes.submitBtn}>
                 Submit
@@ -120,7 +113,7 @@ const Checkout = () => {
             </FlexBetween>
           </Box>
           <Divider />
-          <Box sx={classes.justifyContentCol}>
+          <Box sx={{ ...classes.justifyContentCol, m: '2.5rem  0' }}>
             <Box display='flex' justifyContent='flex-start' alignItems='center' gap={2}>
               <Box borderRadius='50%' height='14px' width='14px' sx={{ background: '#000' }} />
               <Typography sx={classes.title}>Direct Bank Transfer</Typography>
@@ -135,7 +128,7 @@ const Checkout = () => {
               Your personal data will be used to support your experience throughout this website, to
               manage access to your account, and for other purposes described in our privacy policy.
             </Typography>
-            <Box textAlign={'center'}>
+            <Box textAlign={'center'} mt='1rem'>
               <Button sx={classes.orderBtn}>Place order</Button>
             </Box>
           </Box>
