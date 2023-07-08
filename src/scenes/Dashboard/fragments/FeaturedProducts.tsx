@@ -1,9 +1,15 @@
+import React, { useState } from 'react';
 import { Box, Card, CardMedia, CardContent, Typography, Button, Fade } from '@mui/material';
-import { dataSource } from '../../../data';
-import { useState } from 'react';
 import useStyles from '../useStyles';
+import { UseQueryResult } from '@tanstack/react-query';
+import { Product } from '../../../api';
+import SkeletonLoader from '../../../components/Skeleton/CardLoader';
 
-const FeaturedProducts = () => {
+type FeaturedProductsProps = {
+  query: UseQueryResult<Product[], unknown>;
+};
+
+const FeaturedProducts = ({ query: { error, isLoading, data } }: FeaturedProductsProps) => {
   const classes = useStyles();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -18,37 +24,53 @@ const FeaturedProducts = () => {
     setIsHovered(false);
   };
 
+  if (isLoading) {
+    return (
+      <Box
+        display='flex'
+        flexWrap='wrap'
+        justifyContent='flex-start'
+        alignItems='center'
+        gap='42px'
+      >
+        {new Array(8).fill(null).map((_, index) => (
+          <SkeletonLoader key={index} />
+        ))}
+      </Box>
+    );
+  }
+
   return (
     <Box m='3.5rem 2.5rem'>
       <Typography variant='h4' textAlign='center' sx={classes.title}>
         Our Products
       </Typography>
       <Box display='flex' flexWrap='wrap' justifyContent='flex-start' gap='42px'>
-        {dataSource.map((item) => (
+        {data?.slice(0, 8)?.map((item) => (
           <Box
             key={item.id}
             position='relative'
-            onMouseEnter={() => handleCardHover(item.id)}
+            onMouseEnter={() => handleCardHover(item.id.toString())}
             onMouseLeave={handleCardLeave}
           >
             <Card sx={classes.card} elevation={0}>
               <CardMedia
                 component='img'
                 alt='green iguana'
-                image={item?.productMeta?.imageUrl}
+                image={item?.image}
                 sx={classes.cardMedia}
               />
               <CardContent sx={classes.cardContent}>
                 <Typography gutterBottom variant='h5' component='div'>
-                  {item?.productMeta?.title}
+                  {item?.title}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  {item?.productMeta?.desc}
+                  {item?.description}
                 </Typography>
               </CardContent>
             </Card>
 
-            <Fade in={hoveredCard === item.id}>
+            <Fade in={hoveredCard === item.id.toString()}>
               <Button
                 variant='contained'
                 size='small'

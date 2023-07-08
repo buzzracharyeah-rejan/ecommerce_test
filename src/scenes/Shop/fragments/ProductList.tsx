@@ -19,15 +19,23 @@ import {
   PaginationItem,
 } from '@mui/material';
 import useStyles from '../../Dashboard/useStyles';
-import { dataSource } from '../../../data';
+import { UseQueryResult } from '@tanstack/react-query';
 import FlexBetween from '../../../components/FlexBetween';
 
 /* ASSETS */
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SkeletonLoader from '../../../components/Skeleton/CardLoader';
+import { Product } from '../../../api';
+import { useNavigate } from 'react-router-dom';
 
-const ProductList = () => {
+type ProductListProps = {
+  query: UseQueryResult<Product[], unknown>;
+};
+
+const ProductList = ({ query: { error, isLoading, data } }: ProductListProps) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const theme = useTheme();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -56,6 +64,22 @@ const ProductList = () => {
   const handlePageChange = (event: any, value: any) => {
     setPage(value);
   };
+
+  if (isLoading) {
+    return (
+      <Box
+        display='flex'
+        flexWrap='wrap'
+        justifyContent='flex-start'
+        alignItems='center'
+        gap='42px'
+      >
+        {new Array(8).fill(null).map((_, index) => (
+          <SkeletonLoader key={index} />
+        ))}
+      </Box>
+    );
+  }
 
   return (
     <Box mb='3.5rem'>
@@ -151,31 +175,33 @@ const ProductList = () => {
           width='90%'
           px='4rem'
         >
-          {dataSource.map((item) => (
+          {data?.map((item) => (
             <Box
               key={item.id}
               position='relative'
-              onMouseEnter={() => handleCardHover(item.id)}
+              onMouseEnter={() => handleCardHover(item.id.toString())}
               onMouseLeave={handleCardLeave}
+              onClick={() => navigate(`/products/${item.id}`)}
+              sx={{ '&:hover': { cursor: 'pointer' } }}
             >
               <Card sx={classes.card} elevation={0}>
                 <CardMedia
                   component='img'
                   alt='green iguana'
-                  image={item?.productMeta?.imageUrl}
+                  image={item?.image}
                   sx={classes.cardMedia}
                 />
                 <CardContent sx={classes.cardContent}>
                   <Typography gutterBottom variant='h5' component='div'>
-                    {item?.productMeta?.title}
+                    {item?.title}
                   </Typography>
                   <Typography variant='body2' color='text.secondary'>
-                    {item?.productMeta?.desc}
+                    {item?.description}
                   </Typography>
                 </CardContent>
               </Card>
 
-              <Fade in={hoveredCard === item.id}>
+              {/* <Fade in={hoveredCard === item.id.toString()}>
                 <Button
                   variant='contained'
                   size='small'
@@ -189,7 +215,7 @@ const ProductList = () => {
                 >
                   Add to cart
                 </Button>
-              </Fade>
+              </Fade> */}
             </Box>
           ))}
         </Box>

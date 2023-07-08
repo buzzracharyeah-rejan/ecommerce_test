@@ -13,12 +13,16 @@ import {
   Select,
   SelectChangeEvent,
   MenuItem,
+  Skeleton,
 } from '@mui/material';
 import Header from '../../../components/Header';
 import FlexBetween from '../../../components/FlexBetween';
 import { AccountCircle } from '@mui/icons-material';
 import useStyles from '../useStyles';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getProduct } from '../../../api';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -44,7 +48,13 @@ function TabPanel(props: TabPanelProps) {
 
 const ProductDetail = () => {
   const theme = useTheme();
+  const { id: prodId } = useParams();
   const { classes } = useStyles();
+
+  const { error, isLoading, data } = useQuery({
+    queryKey: ['producst'],
+    queryFn: () => getProduct(prodId!),
+  });
 
   const [quanity, setQuantity] = useState<string>('10');
 
@@ -52,66 +62,13 @@ const ProductDetail = () => {
     setQuantity(event.target.value);
   };
 
-  return (
-    <>
-      <Header location='Home' location1='Shop' />
+  if (isLoading) {
+    return (
       <Grid container mt='2.5rem' gap='3.5rem'>
-        {/* LEFT */}
         <Grid item sm={12} md={5} lg={4} p='1.5rem 2.85rem'>
-          <FlexBetween sx={{ maxWidth: '460px' }}>
-            <Box
-              display='grid'
-              flexDirection='column'
-              alignItems='center'
-              justifyContent={'flex-start'}
-              gap='2rem'
-            >
-              <Box
-                component='img'
-                width='83px'
-                height='55px'
-                alt={'min-image'}
-                src={'/assets/min-sofa1.png'}
-                sx={{ background: theme.palette.secondary[100], borderRadius: '0.25rem' }}
-              />
-              <Box
-                component='img'
-                width='83px'
-                height='55px'
-                alt={'min-image'}
-                src={'/assets/min-sofa2.png'}
-                sx={{ background: theme.palette.secondary[100], borderRadius: '0.25rem' }}
-              />
-              <Box
-                component='img'
-                width='83px'
-                height='55px'
-                alt={'min-image'}
-                src={'/assets/min-sofa3.png'}
-                sx={{
-                  background: theme.palette.secondary[100],
-                  borderRadius: '0.25rem',
-                }}
-              />
-            </Box>
-
-            {/* MAIN IMAGE DISPLAY */}
-            <Box
-              component='img'
-              maxWidth='481px'
-              height='300px'
-              alt={'image'}
-              src={'/assets/sofa.png'}
-              sx={{
-                backgroundColor: theme.palette.secondary[100],
-                borderRadius: '0.45rem',
-                objectFit: 'cover',
-              }}
-            />
-          </FlexBetween>
+          <Skeleton variant='rounded' width={481} height={300} />
         </Grid>
 
-        {/* RIGHT */}
         <Grid
           item
           xs={12}
@@ -122,83 +79,173 @@ const ProductDetail = () => {
           gap='0.85rem'
           p='1rem 2.5rem 0.25rem 3.25rem'
         >
-          <Typography variant='h4' sx={{ ...classes.title }}>
-            Asgaard sofa
-          </Typography>
-          <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '1rem' }}>
-            Rs 250,000
-          </Typography>
-          <Typography
-            variant='subtitle1'
-            sx={{ ...classes.title, fontSize: '0.85rem', width: '424px' }}
-          >
-            Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact,
-            stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended
-            highs for a sound.
-          </Typography>
-
-          <Box>
-            <Typography
-              variant='subtitle1'
-              sx={{ ...classes.subtitle, fontSize: '0.95rem', mb: '0.85rem' }}
-            >
-              Colors
-            </Typography>
-            <FlexBetween sx={{ width: '150px' }}>
-              <Box width='30px' height='30px' borderRadius='50%' sx={{ background: '#816DFA' }} />
-              <Box
-                width='30px'
-                height='30px'
-                borderRadius='50%'
-                sx={{ backgroundColor: '#000000' }}
-              />
-              <Box
-                width='30px'
-                height='30px'
-                borderRadius='50%'
-                sx={{ backgroundColor: '#B88E2F' }}
-              />
-            </FlexBetween>
-          </Box>
-          <FlexBetween sx={{ width: '280px' }}>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={quanity}
-              label='Age'
-              onChange={handleChange}
-              sx={{
-                width: '80px',
-                borderRadius: '8px',
-              }}
-            >
-              <MenuItem value={10}>1</MenuItem>
-              <MenuItem value={20}>2</MenuItem>
-              <MenuItem value={30}>3</MenuItem>
-            </Select>
-            <Button sx={{ ...classes.button, color: '#000' }}>Add to Cart</Button>
-          </FlexBetween>
-          <Divider sx={{ m: '1rem 0' }} />
-          <Box display='flex' flexDirection={'column'} gap='0.85rem'>
-            <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
-              SKU : ss0011
-            </Typography>
-            <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
-              Category : Sofa
-            </Typography>
-            <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
-              Tags : Single Seater, Luxury
-            </Typography>
-          </Box>
+          <Skeleton variant='rectangular' width={210} height={60} />
+          <Skeleton variant='rectangular' width={210} height={60} />
+          <Skeleton variant='rectangular' width={424} height={60} />
         </Grid>
       </Grid>
-      <Box>
-        <Tabs>
+    );
+  } else if (error) {
+    <Grid container mt='2.5rem' gap='3.5rem'>
+      <Typography variant='h4' letterSpacing={1.5}>
+        Something went wrong
+      </Typography>
+    </Grid>;
+  } else
+    return (
+      <>
+        <Header location='Home' location1='Shop' />
+        <Grid container mt='2.5rem' gap='3.5rem'>
+          {/* LEFT */}
+          <Grid item sm={12} md={5} lg={4} p='1.5rem 2.85rem'>
+            <FlexBetween sx={{ maxWidth: '460px' }}>
+              <Box
+                display='grid'
+                flexDirection='column'
+                alignItems='center'
+                justifyContent={'flex-start'}
+                gap='2rem'
+              >
+                <Box
+                  component='img'
+                  width='83px'
+                  height='55px'
+                  alt={'min-image'}
+                  src={data?.image}
+                  sx={{
+                    background: theme.palette.secondary[100],
+                    borderRadius: '0.25rem',
+                    objectFit: 'contain',
+                  }}
+                />
+                <Box
+                  component='img'
+                  width='83px'
+                  height='55px'
+                  alt={'min-image'}
+                  src={data?.image}
+                  sx={{
+                    background: theme.palette.secondary[100],
+                    borderRadius: '0.25rem',
+                    objectFit: 'contain',
+                  }}
+                />
+                <Box
+                  component='img'
+                  width='83px'
+                  height='55px'
+                  alt={'min-image'}
+                  src={data?.image}
+                  sx={{
+                    background: theme.palette.secondary[100],
+                    borderRadius: '0.25rem',
+                    objectFit: 'contain',
+                  }}
+                />
+              </Box>
+
+              {/* MAIN IMAGE DISPLAY */}
+              <Box
+                component='img'
+                maxWidth='481px'
+                height='300px'
+                alt={'image'}
+                src={data?.image}
+                sx={{
+                  backgroundColor: theme.palette.secondary[100],
+                  borderRadius: '0.45rem',
+                  objectFit: 'contain',
+                }}
+              />
+            </FlexBetween>
+          </Grid>
+
+          {/* RIGHT */}
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={7}
+            display={'flex'}
+            flexDirection={'column'}
+            gap='0.85rem'
+            p='1rem 2.5rem 0.25rem 3.25rem'
+          >
+            <Typography variant='h4' sx={{ ...classes.title }}>
+              {data?.title}
+            </Typography>
+            <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '1rem' }}>
+              Rs {data?.price}
+            </Typography>
+            <Typography
+              variant='subtitle1'
+              sx={{ ...classes.title, fontSize: '0.85rem', width: '424px' }}
+            >
+              {data?.description}
+            </Typography>
+
+            <Box>
+              <Typography
+                variant='subtitle1'
+                sx={{ ...classes.subtitle, fontSize: '0.95rem', mb: '0.85rem' }}
+              >
+                Colors
+              </Typography>
+              <FlexBetween sx={{ width: '150px' }}>
+                <Box width='30px' height='30px' borderRadius='50%' sx={{ background: '#816DFA' }} />
+                <Box
+                  width='30px'
+                  height='30px'
+                  borderRadius='50%'
+                  sx={{ backgroundColor: '#000000' }}
+                />
+                <Box
+                  width='30px'
+                  height='30px'
+                  borderRadius='50%'
+                  sx={{ backgroundColor: '#B88E2F' }}
+                />
+              </FlexBetween>
+            </Box>
+            <FlexBetween sx={{ width: '280px' }}>
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                value={quanity}
+                label='Age'
+                onChange={handleChange}
+                sx={{
+                  width: '80px',
+                  borderRadius: '8px',
+                }}
+              >
+                <MenuItem value={10}>1</MenuItem>
+                <MenuItem value={20}>2</MenuItem>
+                <MenuItem value={30}>3</MenuItem>
+              </Select>
+              <Button sx={{ ...classes.button, color: '#000' }}>Add to Cart</Button>
+            </FlexBetween>
+            <Divider sx={{ m: '1rem 0' }} />
+            <Box display='flex' flexDirection={'column'} gap='0.85rem'>
+              <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
+                SKU : {data?.id}
+              </Typography>
+              <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
+                Category : {data?.category}
+              </Typography>
+              <Typography variant='subtitle1' sx={{ ...classes.subtitle, fontSize: '0.85rem' }}>
+                Tags : {data?.category}
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        <Box>
+          {/* <Tabs>
           <Tab value='1'></Tab>
-        </Tabs>
-      </Box>
-    </>
-  );
+        </Tabs> */}
+        </Box>
+      </>
+    );
 };
 
 export default ProductDetail;
