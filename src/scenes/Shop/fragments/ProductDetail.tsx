@@ -22,7 +22,9 @@ import useStyles from '../useStyles';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { getProduct } from '../../../api';
+import { Product, getProduct } from '../../../api';
+import { addProduct } from '../../../store/slices/cart.slice';
+import { useAppDispatch } from '../../../store';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,6 +50,7 @@ function TabPanel(props: TabPanelProps) {
 
 const ProductDetail = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const { id: prodId } = useParams();
   const { classes } = useStyles();
 
@@ -60,6 +63,10 @@ const ProductDetail = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setQuantity(event.target.value);
+  };
+
+  const handleAddToCart = (item: Product) => {
+    dispatch(addProduct({ ...item, quanity }));
   };
 
   if (isLoading) {
@@ -179,7 +186,13 @@ const ProductDetail = () => {
             </Typography>
             <Typography
               variant='subtitle1'
-              sx={{ ...classes.title, fontSize: '0.85rem', width: '424px' }}
+              sx={{
+                ...classes.title,
+                fontSize: '0.85rem',
+                width: '424px',
+                letterSpacing: '1.2px',
+                lineHeight: '20px',
+              }}
             >
               {data?.description}
             </Typography>
@@ -212,7 +225,6 @@ const ProductDetail = () => {
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={quanity}
-                label='Age'
                 onChange={handleChange}
                 sx={{
                   width: '80px',
@@ -223,7 +235,12 @@ const ProductDetail = () => {
                 <MenuItem value={20}>2</MenuItem>
                 <MenuItem value={30}>3</MenuItem>
               </Select>
-              <Button sx={{ ...classes.button, color: '#000' }}>Add to Cart</Button>
+              <Button
+                sx={{ ...classes.button, color: '#000' }}
+                onClick={() => handleAddToCart(data!)}
+              >
+                Add to Cart
+              </Button>
             </FlexBetween>
             <Divider sx={{ m: '1rem 0' }} />
             <Box display='flex' flexDirection={'column'} gap='0.85rem'>

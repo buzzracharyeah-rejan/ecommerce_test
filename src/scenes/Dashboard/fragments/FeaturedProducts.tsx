@@ -4,6 +4,8 @@ import useStyles from '../useStyles';
 import { UseQueryResult } from '@tanstack/react-query';
 import { Product } from '../../../api';
 import SkeletonLoader from '../../../components/Skeleton/CardLoader';
+import { useAppDispatch } from '../../../store';
+import { addProduct } from '../../../store/slices/cart.slice';
 
 type FeaturedProductsProps = {
   query: UseQueryResult<Product[], unknown>;
@@ -11,6 +13,7 @@ type FeaturedProductsProps = {
 
 const FeaturedProducts = ({ query: { error, isLoading, data } }: FeaturedProductsProps) => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -22,6 +25,10 @@ const FeaturedProducts = ({ query: { error, isLoading, data } }: FeaturedProduct
   const handleCardLeave = () => {
     setHoveredCard(null);
     setIsHovered(false);
+  };
+
+  const handleAddToCart = (item: Product) => {
+    dispatch(addProduct(item));
   };
 
   if (isLoading) {
@@ -58,7 +65,7 @@ const FeaturedProducts = ({ query: { error, isLoading, data } }: FeaturedProduct
                 component='img'
                 alt='green iguana'
                 image={item?.image}
-                sx={classes.cardMedia}
+                sx={{ ...classes.cardMedia, objectFit: 'contain' }}
               />
               <CardContent sx={classes.cardContent}>
                 <Typography gutterBottom variant='h5' component='div'>
@@ -74,6 +81,7 @@ const FeaturedProducts = ({ query: { error, isLoading, data } }: FeaturedProduct
               <Button
                 variant='contained'
                 size='small'
+                onClick={() => handleAddToCart(item)}
                 sx={{
                   ...classes.button,
                   position: 'absolute',
