@@ -91,7 +91,7 @@ const Footer = () => {
             </Box>
           </Box>
         </FlexBetween>
-        <Divider />
+        <Divider sx={{ mt: '2rem' }} />
         <Typography variant='subtitle2' sx={{ p: '2.1rem 2.5rem' }}>
           2023 furino. All rights reverved
         </Typography>
