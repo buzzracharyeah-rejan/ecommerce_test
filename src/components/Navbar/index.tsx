@@ -1,8 +1,8 @@
-import { AppBar, Box, IconButton, Link, Toolbar } from '@mui/material';
-import React from 'react';
+import { AppBar, Box, IconButton, InputBase, Link, Toolbar } from '@mui/material';
+import React, { useState } from 'react';
 import FlexBetween from '../FlexBetween';
 import logo from '/assets/logo.png';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 /* ASSETS */
 import './navbar.styles.css';
@@ -14,6 +14,9 @@ import {
 } from '@mui/icons-material';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState<boolean>(false);
+
   return (
     <AppBar
       sx={{ position: 'static', background: 'none', boxShadow: 'none', padding: '1.25rem 3.5rem' }}
@@ -45,8 +48,16 @@ const Navbar = () => {
           </FlexBetween>
         </Box>
 
-        <FlexBetween>
-          <IconButton>
+        <FlexBetween sx={{ width: '460px' }}>
+          <InputBase
+            placeholder='Search Product'
+            sx={{
+              background: '#f3f3f3',
+              visibility: search ? 'visible' : 'hidden',
+              p: '0.5rem 0.85rem',
+            }}
+          />
+          <IconButton onClick={() => setSearch(!search)}>
             <SearchOutlined />
           </IconButton>
           <IconButton>
@@ -55,7 +66,7 @@ const Navbar = () => {
           <IconButton>
             <FavoriteBorder />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => navigate('/cart')}>
             <ShoppingCartCheckoutOutlined />
           </IconButton>
         </FlexBetween>

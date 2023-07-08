@@ -91,7 +91,7 @@ const Checkout = () => {
         </Grid>
 
         {/* RIGHT */}
-        <Grid item xs={12} md={6} lg={7}>
+        <Grid item xs={12} md={5} lg={6} mx='2.5rem'>
           <Box sx={{ ...classes.justifyContentCol, m: '6.5rem 0 2.5rem 0' }}>
             <FlexBetween sx={{ m: '1rem 0' }}>
               <Box display='flex' flexDirection={'column'} gap={3}>
@@ -108,7 +108,9 @@ const Checkout = () => {
                 <Typography sx={classes.title}>Subtotal</Typography>
                 <Typography sx={classes.body}>Rs 250,000.00</Typography>
                 <Typography sx={classes.body}>Rs 250,000.00</Typography>
-                <Typography sx={classes.highlightPrice}>Rs 250,000.00</Typography>
+                <Typography sx={{ ...classes.highlightPrice, ml: '-2rem' }}>
+                  Rs 250,000.00
+                </Typography>
               </Box>
             </FlexBetween>
           </Box>

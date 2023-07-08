@@ -3,9 +3,12 @@ import Header from '../../components/Header';
 import FlexBetween from '../../components/FlexBetween';
 import ItemsTable from './ItemsTable';
 import useStyles from './useStyles';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { classes } = useStyles();
+
   return (
     <>
       <Header title='Cart' location='Home' location1='Cart' />
@@ -35,7 +38,9 @@ const Cart = () => {
                 </Typography>
               </FlexBetween>
 
-              <Button sx={classes.orderBtn}>Check Out</Button>
+              <Button sx={classes.orderBtn} onClick={() => navigate('/checkout')}>
+                Check Out
+              </Button>
             </Box>
           </Grid>
         </Grid>
